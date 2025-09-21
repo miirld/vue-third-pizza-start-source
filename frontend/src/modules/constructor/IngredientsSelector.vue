@@ -92,7 +92,7 @@ const inputValue = (ingredient, count) => {
 };
 
 const getImage = (image) => {
-  return new URL(`../../assets/img/${image}`, import.meta.url).href;
+  return new URL(`../../assets/img/filling/${image}`, import.meta.url).href;
 };
 </script>
 
