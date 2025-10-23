@@ -3,7 +3,7 @@ import { ingredientsQuantity } from "@/common/helpers/ingredients-quantity";
 import { pizzaPrice } from "@/common/helpers/pizza-price";
 import { useDataStore } from "@/stores/data";
 
-export const usePizzaStore = defineStore("cart", {
+export const usePizzaStore = defineStore("pizza", {
   state: () => ({
     index: null,
     name: "",
