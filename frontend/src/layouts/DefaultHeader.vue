@@ -11,7 +11,7 @@
       </router-link>
     </div>
     <div class="header__cart">
-      <router-link :to="{ name: 'cart' }">0 ₽</router-link>
+      <router-link :to="{ name: 'cart' }">{{ cartStore.total }} ₽</router-link>
     </div>
     <div class="header__user">
       <router-link v-if="authStore.isAuthenticated" :to="{ name: 'profile' }">
@@ -40,9 +40,11 @@
 <script setup>
 import { useAuthStore } from "@/stores/auth";
 import { useRouter } from "vue-router";
+import { useCartStore } from "@/stores/cart";
 import { getPublicImage } from "@/common/helpers/public-image";
 
 const authStore = useAuthStore();
+const cartStore = useCartStore();
 
 const router = useRouter();
 
@@ -87,7 +89,7 @@ const logout = async () => {
 
     color: $white;
     background-color: $green-500;
-    background-image: url("@/assets/img/cart.svg");
+    background-image: url("/api/public/img/cart.svg");
     background-repeat: no-repeat;
     background-position: 20px center;
     background-size: 29px 27px;
@@ -167,7 +169,7 @@ const logout = async () => {
     content: "";
     vertical-align: middle;
 
-    background: url("@/assets/img/login.svg") no-repeat center;
+    background: url("/api/public/img/login.svg") no-repeat center;
     background-size: auto 50%;
   }
 }
@@ -183,7 +185,7 @@ const logout = async () => {
     content: "";
     vertical-align: middle;
 
-    background: url("@/assets/img/login.svg") no-repeat center;
+    background: url("/api/public/img/login.svg") no-repeat center;
     background-size: auto 50%;
   }
 }

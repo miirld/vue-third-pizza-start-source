@@ -7,11 +7,13 @@
 <script setup>
 import AppLayout from "@/layouts/AppLayout.vue";
 import { onMounted, ref } from "vue";
+import { useDataStore } from "@/stores/data";
 import { useAuthStore } from "@/stores/auth";
 import JwtService from "@/services/jwt/jwt.service";
 import router from "@/router";
 import { useRoute } from "vue-router";
 
+const dataStore = useDataStore();
 const route = useRoute();
 const isLoaded = ref(false);
 
@@ -37,6 +39,7 @@ const checkLoggedIn = async () => {
 
 onMounted(() => {
   checkLoggedIn();
+  dataStore.loadData();
 });
 </script>
 
