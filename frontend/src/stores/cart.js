@@ -101,6 +101,12 @@ export const useCartStore = defineStore("cart", {
 
       this.misc[miscIdx].quantity = count;
     },
+    initPhoneFromUser() {
+      if (!this.phone) {
+        const auth = useAuthStore();
+        this.phone = auth.user?.phone ?? "";
+      }
+    },
     setPhone(phone) {
       this.phone = phone;
     },
@@ -121,7 +127,9 @@ export const useCartStore = defineStore("cart", {
       this.address.street = comment;
     },
     reset() {
-      this.phone = "";
+      const authStore = useAuthStore();
+
+      this.phone = authStore.user?.phone ?? "";
       this.address = {
         street: "",
         building: "",
