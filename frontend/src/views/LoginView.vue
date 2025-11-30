@@ -52,11 +52,12 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useAuthStore } from "@/stores/auth";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import { clearValidationErrors, validateFields } from "@/common/validator";
 
 const authStore = useAuthStore();
 const router = useRouter();
+const route = useRoute();
 
 const resetValidations = () => {
   return {
@@ -106,7 +107,8 @@ const login = async () => {
 
   if (resMsg === "success") {
     await authStore.whoami();
-    await router.push({ name: "home" });
+    const { redirect } = route.query;
+    await router.push(redirect ? redirect : { name: "home" });
   } else {
     errorMessage.value = resMsg;
   }
